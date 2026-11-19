@@ -53,7 +53,7 @@
     "uninstall-local": "node scripts/uninstall-local.mjs"
   },
   "dependencies": {
-    "@plantuml/core": "1.2026.9"
+    "@plantuml/core": "1.2026.10"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
