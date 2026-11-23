@@ -251,7 +251,8 @@ test('the third-party notices name the engine version and every script of the en
   expect(notices).toContain(`[\`${engineName}\`](https://www.npmjs.com/package/${engineName})\n${engineManifest.version}`);
   // The source of the engine is the commit of the npm package (its gitHead), which is not always the commit of the tag.
   expect(notices).toMatch(/<https:\/\/github\.com\/plantuml\/plantuml\/tree\/[0-9a-f]{40}>/);
-  const scripts = [...new Set(Object.values<string>(engineManifest.exports))].filter((file) => file.endsWith('.js'));
+  // The build leaves out the Wasm flavour of the engine (esbuild.mjs).
+  const scripts = [...new Set(Object.values<string>(engineManifest.exports))].filter((file) => file.endsWith('.js') && !file.includes('wasm'));
   expect(scripts.length).toBeGreaterThan(0);
   for (const script of scripts) {
     expect(notices, script).toContain(`| \`${path.basename(script)}\` |`);

@@ -108,12 +108,13 @@ same text still show.
 ### Limits of the engine
 
 The JavaScript build of PlantUML does not have every feature of PlantUML in
-Java. With `@plantuml/core` 1.2026.9:
+Java. With `@plantuml/core` 1.2026.10:
 
 - These diagram types do not render: `ditaa`, Graphviz graphs (`dot`),
-  `math`, `latex`, `chen`, `board`, `git`, `wire`, `files`, `hcl` and
-  `chronology`. A network diagram renders with `@startnwdiag`, and a wireframe
-  with `@startsalt`, but not inside `@startuml`.
+  `board`, `git`, `wire`, `files`, `hcl` and `chronology`. A formula
+  (`math`, `latex`) shows as its plain text, not as a formula. A network
+  diagram renders with `@startnwdiag`, and a wireframe with `@startsalt`, but
+  not inside `@startuml`.
 - A diagram with `newpage` shows its first page only.
 - A link (`[[…]]`) opens when you click it, as the other links of a preview
   do: VS Code opens web addresses, mail addresses and `vscode:` addresses, and

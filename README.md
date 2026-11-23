@@ -14,7 +14,7 @@ Java, no Graphviz installation and no server, and it works offline.
   restart, and when you run its command "Export Diagrams as SVG". It does not
   run in VS Code for the Web.
 - **Rendering.** The diagrams render on your computer, in the preview, with
-  the PlantUML engine that the package contains (`@plantuml/core` 1.2026.9,
+  the PlantUML engine that the package contains (`@plantuml/core` 1.2026.10,
   PlantUML compiled to JavaScript). The extension uses no PlantUML server,
   starts no Java and no other program, and sends no diagram text and no file
   to the internet. No setting changes this. The security setting of the
@@ -133,9 +133,9 @@ describes every feature.
   diagrams there with its own layout engine Smetana instead of Graphviz,
   unless you set the preview security to "Disable". Class, component and
   state diagrams can then look a little different.
-- The engine does not render `ditaa`, `dot`, `math`, `latex`, `chen`, `board`,
-  `git`, `wire`, `files`, `hcl` and `chronology`, and renders a wireframe only
-  with `@startsalt`, not inside `@startuml`.
+- The engine does not render `ditaa`, `dot`, `board`, `git`, `wire`, `files`,
+  `hcl` and `chronology`, shows a formula (`math`, `latex`) as its plain text,
+  and renders a wireframe only with `@startsalt`, not inside `@startuml`.
   It shows the first page of a diagram with `newpage` only and shows no
   images (`<img:…>`).
 - Included files must be in a workspace folder or in the folder of the
