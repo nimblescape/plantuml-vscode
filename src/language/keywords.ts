@@ -20,7 +20,7 @@
  */
 export const diagramTypes: readonly string[] = [
   'uml', 'mindmap', 'wbs', 'gantt', 'project', 'json', 'yaml', 'ebnf', 'regex', 'creole', 'chart', 'nwdiag', 'packetdiag',
-  'salt',
+  'salt', 'chen',
 ];
 
 /** elementKeywords declare an element of a diagram, for example a participant, a class or a component. */

@@ -16,7 +16,7 @@ npm install @nimblescape/plantuml
 
 The package needs Node.js 22 or newer and has no dependencies. It contains
 the PlantUML engine compiled to JavaScript
-([`@plantuml/core`](https://www.npmjs.com/package/@plantuml/core) 1.2026.9),
+([`@plantuml/core`](https://www.npmjs.com/package/@plantuml/core) 1.2026.10),
 so it needs no Java, no Graphviz installation and no server.
 
 ## Usage

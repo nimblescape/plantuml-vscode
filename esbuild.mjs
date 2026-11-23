@@ -112,7 +112,10 @@ console.log(`Wrote ${Object.keys(grammarFiles).length} grammars to ${syntaxesDir
 const require = createRequire(import.meta.url);
 const engineRoot = path.dirname(require.resolve('@plantuml/core/package.json'));
 const engine = JSON.parse(fs.readFileSync(path.join(engineRoot, 'package.json'), 'utf8'));
-const scripts = [...new Set(Object.values(engine.exports))].filter((file) => file.endsWith('.js'));
+// From 1.2026.10 on, the package also exports an experimental flavour of the
+// engine as WebAssembly (plantuml-wasm.js, plantuml.wasm-runtime.js and
+// plantuml.wasm). The previews use plantuml.js, so the build leaves it out.
+const scripts = [...new Set(Object.values(engine.exports))].filter((file) => file.endsWith('.js') && !file.includes('wasm'));
 fs.rmSync(engineDir, { recursive: true, force: true });
 fs.mkdirSync(engineDir, { recursive: true });
 for (const file of [...scripts, './LICENSE']) {

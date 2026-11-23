@@ -107,10 +107,14 @@ const samples: Readonly<Record<string, string>> = {
   nwdiag: 'nwdiag {\n  network lan {\n    server;\n  }\n}',
   packetdiag: 'packetdiag {\n  0-15: Source\n}',
   salt: '{\n  Login | "name"\n  [Cancel] | [OK]\n}',
+  chen: 'entity Person {\n  Name\n}\nrelationship Owns {\n}\nPerson -N- Owns',
 };
 
 /** unsupportedTypes are diagram types of PlantUML that the engine does not render. */
-const unsupportedTypes = ['ditaa', 'dot', 'math', 'latex', 'wire', 'files', 'chen', 'board', 'git', 'chronology', 'hcl'];
+const unsupportedTypes = ['ditaa', 'dot', 'wire', 'files', 'board', 'git', 'chronology', 'hcl'];
+
+/** textTypes are diagram types of PlantUML that the engine shows as their plain text, without the layout of a formula. */
+const textTypes = ['math', 'latex'];
 
 beforeAll(() => {
   // happy-dom has no canvas; the engine measures each text with the context of one, and draws the sprites of C4 on it.
@@ -153,6 +157,11 @@ describe('the engine with the loader of the previews', () => {
     const result = await render([`@start${type}`, 'text', `@end${type}`]);
     const message = 'svg' in result ? textsOf(result.svg).join(' ') : result.error;
     expect(message).toMatch(/not supported|Unsupported diagram type/);
+  });
+
+  test.each(textTypes)('shows the text of the diagram type %s as it is, which the highlighting and the completion leave out', async (type) => {
+    // A new version of the engine that draws the formula fails here: then add the type to diagramTypes.
+    expect(textsOf(await svgOf(`@start${type}\nx^2 + y_1\n@end${type}`))).toEqual(['x^2 + y_1']);
   });
 
   test('loads the scripts of the themes, the emoji and the icons through the loader, from the files of the package', async () => {

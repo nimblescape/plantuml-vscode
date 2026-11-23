@@ -27,7 +27,7 @@ links to its details.
   extension does not run in VS Code for the Web. See
   [Trust boundaries](#trust-boundaries).
 - **Rendering.** The diagrams render on your computer, in the webview of the
-  preview, with the engine `@plantuml/core` 1.2026.9 that the package
+  preview, with the engine `@plantuml/core` 1.2026.10 that the package
   contains. The extension uses no PlantUML server, starts no Java and no other
   program, and sends no diagram text and no file to the internet. No setting
   changes this. The security setting of the Markdown preview only selects the
@@ -78,7 +78,7 @@ A diagram text from a stranger can still:
   in that time, and the next diagram of the preview then waits up to 60 more
   seconds for the engine; a rendering without a pause keeps the page busy
   until it ends. A web worker, which runs beside the page and can be
-  stopped, cannot run the engine 1.2026.9: the engine builds its pictures
+  stopped, cannot run the engine 1.2026.10: the engine builds its pictures
   with the elements of the page (`document`, `window`), which a worker does
   not have (checked in Chromium on 29 October 2026);
 - show the text of an included file in a preview, when that file is in a
@@ -102,7 +102,7 @@ of VS Code, as the text of an open file does.
 
 ## Rendering
 
-- **The engine.** The engine is the npm package `@plantuml/core` 1.2026.9:
+- **The engine.** The engine is the npm package `@plantuml/core` 1.2026.10:
   PlantUML compiled to JavaScript with TeaVM, with Viz.js (Graphviz compiled
   to WebAssembly). The build copies its scripts into `dist/engine/` of the
   package. A preview loads the engine from the folder of the extension
@@ -116,7 +116,7 @@ of VS Code, as the text of an open file does.
   it reads files and sends their text to the previews.
 - **Addresses in a diagram.** The extension does not read an include line
   with an address, for example `!include https://…` or `!includeurl https://…`,
-  and the preview shows a message at that line. With `@plantuml/core` 1.2026.9,
+  and the preview shows a message at that line. With `@plantuml/core` 1.2026.10,
   the engine sends no request for an address in `!include`, `!includeurl`,
   `!import`, `!theme … from`, `%load_json`, `sprite` or `<img:…>`: it shows an
   error or a placeholder text, and its SVG picture has no image that names an
@@ -152,7 +152,7 @@ of VS Code, as the text of an open file does.
 - **The pictures.** The engine writes each diagram as an SVG text. The
   preview puts it into a shadow root of the block. The security policy of the
   preview does not let a script in a picture run (see [Known limits](#known-limits)
-  for the setting "Disable"). The engine 1.2026.9 escapes the text of a
+  for the setting "Disable"). The engine 1.2026.10 escapes the text of a
   diagram and writes no script, no event handler and no `<foreignObject>`
   into a picture, also not for the pragma `svginteractive`; it does not
   render an inline SVG sprite, and it writes a link to a `javascript:`
@@ -226,7 +226,7 @@ when you start it:
   and nothing when you close the tab or cancel the export.
 - **Content.** A file holds the SVG image of the engine as it is, after the
   XML declaration, as the preview shows it (see [Rendering](#rendering)): the
-  engine 1.2026.9 writes no script, no event handler and no
+  engine 1.2026.10 writes no script, no event handler and no
   `<foreignObject>`. A link of a diagram (`[[…]]`) stays a link in the file,
   which a program that shows the file may open.
 
@@ -307,7 +307,7 @@ sends nothing to any address.
   rules.
 - With the security setting "Disable" of the Markdown preview, VS Code sets no
   security policy, so the policy no longer blocks network requests or scripts
-  in the Markdown preview. The engine 1.2026.9 sends no request for the
+  in the Markdown preview. The engine 1.2026.10 sends no request for the
   addresses of a diagram (see [Rendering](#rendering)); that check covers this
   version of the engine only. Set "Disable" only for documents that you trust,
   as the [user guide](guide.md#layout-of-diagrams-in-the-markdown-preview)
